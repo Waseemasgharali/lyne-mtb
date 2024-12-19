@@ -1,0 +1,215 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0px;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "Poppins", sans-serif;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
+}
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.delete-btn:hover {
+  background-color: #d32f2f;
+}
+.admin-container {
+  max-width: 95%;
+  margin: auto;
+  padding: 2rem 0;
+}
+.p-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.add-p {
+  font-size: 0.9rem;
+  background: #d32f2f;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 7px;
+  margin: 1rem 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+/* Container */
+.add-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+/* Form */
+form {
+  margin-top: 20px;
+}
+
+/* Form Labels */
+label {
+  font-weight: bold;
+}
+
+/* Form Inputs */
+input[type="text"],
+input[type="number"],
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Form Submit Button */
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Quill Editor Container */
+#description-editor {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 2% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 8px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: black;
+}
+
+.edit-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.edit-btn:hover,
+.update-btn:hover {
+  background-color: #45a049;
+}
+.update-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 8px;
+  text-decoration: none;
+}
+
+.banner-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.banner-item {
+  position: relative;
+}
+
+.banner-item img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.banner-delete {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.add-b-c {
+  margin: 16px 0;
+}
+.add-banner {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  text-decoration: none;
+}

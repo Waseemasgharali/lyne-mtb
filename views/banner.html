@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banner Management</title>
+    <link rel="stylesheet" href="css/admin.css" />
+    <!-- Link Favicon -->
+    <link rel="shortcut icon" href="images/lyneweb.png" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="admin-container">
+      <h2>Banner Management</h2>
+      <form id="bannerForm" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required />
+        <button type="submit" class="add-p">Add Banner Image</button>
+      </form>
+
+      <div id="banner-list" class="banner-grid">
+        <!-- Banner images will be listed here -->
+      </div>
+    </div>
+    <script src="js/banner.js"></script>
+  </body>
+</html>

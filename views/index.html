@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LYNE MTB CLOTHING</title>
+    <!-- Link To CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Link Favicon -->
+    <link rel="shortcut icon" href="images/lyneweb.png" type="image/x-icon">
+    <!-- Box Icons -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .h-p{
+padding-top: 0;
+      }
+    </style>
+    <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/ec234d5be9a8579596d910f6e/fb28040fdcffc4ee06a5d9567.js");</script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <!-- Nav -->
+      <div class="nav container">
+        <!-- Menu Icon -->
+        <i class="bx bx-menu" id="menu-icon"></i>
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+          <img src="images/lyneweb.png" alt="">
+        </a>
+        <!-- Navbar -->
+        <div class="navbar">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="index.html#products" class="nav-link">Shop</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+          <a href="apply.html" class="nav-link">Apply</a>
+        </div>
+        <div class="nav-right">
+           <!-- Login Button -->
+           <a href="login.html" id="logout-link" class="nav-link log-sign"
+            >Login</a
+          >
+            <!-- Cart-Icon -->
+        <a href="cart.html">
+          <i class="bx bx-shopping-bag" id="cart-icon" data-quantity="0"></i>
+        </a>
+        </div>
+       
+      
+<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script><script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[4]='PHONE';ftypes[4]='phone';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script></div>
+
+    </header>
+  <!-- Home -->
+<section class="home" id="home">
+  <div class="slider-container container">
+      <div id="slides">
+          <!-- Slides will be populated dynamically -->
+      </div>
+      <button class="prev-slide">❮</button>
+      <button class="next-slide">❯</button>
+  </div>
+  <!-- <div class="home-overlay"></div> -->
+</section>
+
+    <!-- Products -->
+    <section class="products container" id="products">
+      <!-- Heading -->
+      <h2 class="heading h-p">Discover Products</h2>
+      <!-- Products Container -->
+      <div class="product-container" id="productList"></div>
+    </section>
+    <!-- Footer -->
+    <div class="footer" id="footer">
+      <div class="footer-c container">
+        <div class="footer-box">
+          <h2>Lyne</h2>
+          <div class="social">
+
+            <a href="https://www.instagram.com/lyne_mtb/"><i class="bx bxl-instagram"></i></a>
+            
+          </div>
+        </div>
+        <div class="footer-box">
+          <h3>Info</h3>
+          <a href="about.html">About</a>
+          <a href="reviews.html">Reviews</a>
+        </div>
+        <div class="footer-box">
+          <h3>Legal Info</h3>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms & Condition</a>
+          <a href="return.html">Return and shipping Policy</a>
+        </div>
+      </div>
+      <p class="copyright container">&#169 Lyne</p>
+    </div>
+    <!-- Link To JS -->
+    <script src="js/main.js"></script>
+    <script src="js/menu.js"></script>
+   <script>
+          let currentSlide = 0;
+let slides = [];
+
+function showSlide(n) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[n].classList.add('active');
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+}
+
+// Fetch banners and initialize slider
+function fetchBanners() {
+    fetch('/api/banner')
+        .then(response => {
+            console.log('Banner Response:', response);
+            return response.json();
+        })
+        .then(banners => {
+            console.log('Banners:', banners);
+            const slidesContainer = document.getElementById('slides');
+            slidesContainer.innerHTML = banners.map(banner => `
+                <div class="slide">
+                    <img src="${banner.image_url}" alt="Banner">
+                </div>
+            `).join('');
+
+            slides = document.querySelectorAll('.slide');
+            if (slides.length > 0) {
+                showSlide(0);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching banners:', error);
+        });
+}
+
+
+// Initialize slider elements
+const prevButton = document.querySelector('.prev-slide');
+const nextButton = document.querySelector('.next-slide');
+
+if (prevButton && nextButton) {
+    prevButton.addEventListener('click', prevSlide);
+    nextButton.addEventListener('click', nextSlide);
+}
+
+// Auto-advance slides every 5 seconds
+setInterval(nextSlide, 5000);
+
+// Initialize banners on page load
+document.addEventListener('DOMContentLoaded', fetchBanners);
+   </script>
+  </body>
+</html>

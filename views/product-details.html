@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details</title>
+    <!-- Link Favicon -->
+    <link rel="shortcut icon" href="images/lyneweb.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <!-- Nav -->
+      <div class="nav container">
+        <!-- Menu Icon -->
+        <i class="bx bx-menu" id="menu-icon"></i>
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+          <img src="images/lyneweb.png" alt="" />
+        </a>
+        <!-- Navbar -->
+        <div class="navbar">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="index.html#products" class="nav-link">Shop</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+          <a href="apply.html" class="nav-link">Apply</a>
+        </div>
+        <div class="nav-right">
+          <!-- Login Button -->
+          <a href="login.html" id="logout-link" class="nav-link log-sign"
+            >Login</a
+          >
+          <!-- Cart-Icon -->
+          <a href="cart.html">
+            <i class="bx bx-shopping-bag" id="cart-icon" data-quantity="0"></i>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="container" id="productDetails"></div>
+     <!-- Footer -->
+     <div class="footer" id="footer">
+      <div class="footer-c container">
+        <div class="footer-box">
+          <h2>Lyne</h2>
+          <div class="social">
+            <a href="https://www.pinterest.com/"><i class="bx bxl-pinterest-alt"></i></a>
+            <a href="https://www.instagram.com/"><i class="bx bxl-instagram"></i></a>
+            <a href="https://www.facebook.com/"><i class="bx bxl-facebook"></i></a>
+            <a href="https://www.youtube.com/"><i class="bx bxl-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-box">
+          <h3>Info</h3>
+          <a href="about.html">About</a>
+          <a href="reviews.html">Reviews</a>
+        </div>
+        <div class="footer-box">
+          <h3>Legal Info</h3>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms & Condition</a>
+          <a href="return.html">Return Policy</a>
+        </div>
+      </div>
+      <p class="copyright container">&#169 Lyne</p>
+    </div>
+
+    <script>
+      // Function to get query parameters
+      function getQueryParams() {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        return {
+          id: urlParams.get("id"),
+        };
+      }
+
+      // Fetch and display product details
+      function fetchProductDetails() {
+        const { id } = getQueryParams();
+
+        fetch(`/api/products/${id}`)
+          .then((response) => response.json())
+          .then((product) => {
+            // Set the product name in the page title
+            document.title = ` ${product.title}`;
+            const productDetails = document.getElementById("productDetails");
+            const sizes = product.sizes.split(",").map((size) => size.trim());
+
+            productDetails.innerHTML = `
+            <div class="p-detail-box">
+              <div class="pd-image">
+  <img src="${product.image_url}" alt="${product.title}" />
+</div>
+<div class="pd-details">
+            <h1 class="pd-title">${product.title}</h1>
+            <p class="pd-description">${product.description}</p>
+            <div class="pd-price">
+              <p>£${product.price.toFixed(2)}</p>
+            </div>
+            <p class="pd-size"><strong>Sizes:</strong> <br> ${sizes
+              .map(
+                (size) =>
+                  `<button class="size-option" data-size="${size}">${size}</button>`
+              )
+              .join(" ")}</p>
+            <p id="size-warning" style="color:orange; display:none;">Please select a size to add to cart</p>
+           <!-- Add inventory status -->
+  ${
+    product.inventory > 0 
+    ? `<p class="stock-status in-stock">In Stock (${product.inventory} available)</p>`
+    : `<p class="stock-status out-of-stock">Out of Stock</p>`
+  }
+  
+  <div class="pd-btns">
+    <button class="add-to-cart" data-id="${product.id}" 
+      ${product.inventory <= 0 ? 'disabled' : ''}>
+      ${product.inventory > 0 ? 'Add to cart' : 'Out of Stock'}
+    </button>
+  </div>
+          </div>
+          </div>
+          `;
+
+            const addToCartButton = document.querySelector(".add-to-cart");
+            addToCartButton.addEventListener("click", addToCart); // Use addToCart from main.js
+
+            // Add event listener for size selection
+            const sizeOptions = document.querySelectorAll(".size-option");
+            sizeOptions.forEach((option) => {
+              option.addEventListener("click", selectSize);
+            });
+          })
+          .catch((error) =>
+            console.error("Error fetching product details:", error)
+          );
+      }
+
+      // Function to select size
+      let selectedSize = null;
+
+      function selectSize(event) {
+        const sizeOption = event.target;
+        const sizeButtons = document.querySelectorAll(".size-option");
+
+        sizeButtons.forEach((button) => {
+          button.style.border = "1px solid #ccc"; // Reset borders
+        });
+
+        sizeOption.style.border = "2px solid #000"; // Highlight selected
+        selectedSize = sizeOption.dataset.size; // Set selected size
+        document.getElementById("size-warning").style.display = "none"; // Hide warning
+      }
+
+      window.onload = fetchProductDetails; // Load product details on page load
+    </script>
+    <script>
+      // Function to show a toast notification with an icon
+      function showToast(message, iconClass) {
+        // Check if the toast container exists, create it if it doesn't
+        let toastContainer = document.getElementById("toast-container");
+        if (!toastContainer) {
+          toastContainer = document.createElement("div");
+          toastContainer.id = "toast-container";
+          document.body.appendChild(toastContainer);
+        }
+
+        // Create the toast element
+        const toast = document.createElement("div");
+        toast.className = "toast";
+
+        // Add the icon
+        const icon = document.createElement("i");
+        icon.className = `bx ${iconClass}`; // Apply the specified icon class
+
+        // Add the message
+        const text = document.createElement("span");
+        text.textContent = message;
+
+        // Append the icon and text to the toast
+        toast.appendChild(icon);
+        toast.appendChild(text);
+
+        // Add the toast to the container
+        toastContainer.appendChild(toast);
+
+        // Automatically remove the toast after a set time
+        setTimeout(() => {
+          toast.remove();
+        }, 3000); // 3 seconds
+      }
+    </script>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/menu.js"></script>
+    <!-- Ensure main.js is linked -->
+  </body>
+</html>

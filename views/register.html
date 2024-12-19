@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <!-- Link To CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Link Favicon -->
+    <link rel="shortcut icon" href="images/lyneweb.png" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Register</h2>
+      <form id="registerForm">
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="username"
+          required
+        />
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="your email"
+          required
+        />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="password"
+          required
+        />
+
+        <button type="submit">Register</button>
+      </form>
+      <p>Already have an account? <a href="login.html">Login here</a>.</p>
+      <p>Forget password? <a href="password_reset.html">Reset here</a>.</p>
+    </div>
+    <!-- Link To JS -->
+
+    <script src="js/main.js"></script>
+    <script src="js/register.js"></script>
+  </body>
+</html>

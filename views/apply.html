@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apply - Lyne</title>
+    <!-- Link To CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Link Favicon -->
+    <link rel="shortcut icon" href="images/lyneweb.png" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Apply Form</h2>
+      <form
+        style="max-width: 600px"
+        action="https://formspree.io/f/mdoqoyge"
+        method="POST"
+        id="contactForm"
+      >
+        <input
+          type="text"
+          name="first"
+          placeholder="First name"
+          autocomplete="on"
+          required
+        />
+
+        <input
+          type="text"
+          name="last"
+          placeholder="Last name"
+          autocomplete="on"
+          required
+        />
+
+        <div class="email">
+          <input
+            type="email"
+            name="email"
+            placeholder="Email address"
+            autocomplete="on"
+            required
+          />
+        </div>
+        <div class="message">
+          <textarea
+            name="reason for application"
+            id=""
+            cols="60"
+            rows="5"
+            placeholder=" Reason for application (200-300 words)"
+            autocomplete="off"
+            required
+          ></textarea>
+        </div>
+
+        <div class="medals">
+          <textarea
+            name="race results"
+            id=""
+            cols="60"
+            rows="5"
+            placeholder=" Race results and achievements"
+            autocomplete="off"
+            required
+          ></textarea>
+        </div>
+
+        <div class="socials">
+          <textarea
+            name="socail media pages"
+            id=""
+            cols="60"
+            rows="5"
+            placeholder="Social media accounts"
+            autocomplete="off"
+            required
+          ></textarea>
+        </div>
+
+        <div class="socials">
+          <textarea
+            name="prefered type of sponsorship"
+            id=""
+            cols="60"
+            rows="5"
+            placeholder="Riding program or full (details below)"
+            autocomplete="off"
+            required
+          ></textarea>
+        </div>
+        <div class="button">
+          <button type="submit">Send Application</button>
+        </div>
+      </form>
+    </div>
+    <!-- Link To JS -->
+    <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
+  </body>
+</html>
